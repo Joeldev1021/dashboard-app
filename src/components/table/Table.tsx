@@ -32,7 +32,7 @@ const Table = () => {
             <td>Mark</td>
             <td>Mark</td>
             <td>
-              <button>In Progress</button>
+              <button className="btn btn_status">In Progress</button>
             </td>
             <td>
               <i className="fas fa-flag"></i>
@@ -46,7 +46,7 @@ const Table = () => {
             <td>Mark</td>
             <td>Jacob</td>
             <td>
-              <button>In Progress</button>
+            <button className="btn btn_status">In Progress</button>
             </td>
             <td>
               <i className="fas fa-flag"></i>
@@ -60,7 +60,7 @@ const Table = () => {
             <td>Mark</td>
             <td>Larry the Bird</td>
             <td>
-              <button>In Progress</button>
+            <button className="btn btn_status">In Progress</button>
             </td>
             <td>
               <i className="fas fa-flag"></i>

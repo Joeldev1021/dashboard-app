@@ -1,25 +1,18 @@
-import { useState } from "react";
 import Header from "../components/header/Header";
 import Table from "../components/table/Table";
+import { Task } from "../model/TaskInterface";
 
-interface Task {
-  id: "",
-  title: "",
-  endDate: "",
-  status: "",
-  Priority: "",
-  progress: ""
+interface props {
+  tasks?: Task[];
 }
 
-const Home = () => {
-  // eslint-disable-next-line no-unused-vars
-  const [tasks, setTasks] = useState<Task>();
-
+const Home = ({ tasks }: props) => {
+  console.log(tasks);
   return (
-    <>
+    <div>
       <Header />
       <Table />
-    </>
+    </div>
   );
 };
 
