@@ -1,72 +1,65 @@
 import { Link } from "react-router-dom";
+import { Task } from "../../model/TaskInterface";
 import "./table.scss";
+
+// eslint-disable-next-line no-unused-vars
 
 // eslint-disable-next-line no-unused-vars
 const STATUS = ["Not Started", "In Progess", "In Review", "Completed"];
 
-const Table = () => {
+interface props {
+  tasks?: Task[];
+}
+
+const Table = ({ tasks }: props) => {
   return (
     <>
       <div className="container">
         <h1>All Task</h1>
-        <Link className="btn" to="/add">
-          Add Task
-        </Link>
+        <div className="table__table">
+          <button className="btn__filter"><i className="fas fa-filter"></i></button>
+          <button className="btn btn__delete">Delete</button>
+          <Link className="btn" to="/add">
+            Add Task
+          </Link>
+        </div>
       </div>
       <table className="table">
         <thead>
           <tr>
-             <th>action</th>
+            <th>action</th>
             <th>Task</th>
-            <th>End date</th>
+            <th>user</th>
             <th>Status</th>
             <th>Priority</th>
             <th>Progress</th>
+            <th>End date</th>
           </tr>
         </thead>
         <tbody className="tbody">
-          <tr>
-            <th>
-              <input type="checkbox" name="completed" />
-            </th>
-            <td>Mark</td>
-            <td>Mark</td>
-            <td>
-              <button className="btn btn_status">In Progress</button>
-            </td>
-            <td>
-              <i className="fas fa-flag"></i>
-            </td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th>
-              <input type="checkbox" name="completed" />
-            </th>
-            <td>Mark</td>
-            <td>Jacob</td>
-            <td>
-            <button className="btn btn_status">In Progress</button>
-            </td>
-            <td>
-              <i className="fas fa-flag"></i>
-            </td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th>
-              <input type="checkbox" name="completed" />
-            </th>
-            <td>Mark</td>
-            <td>Larry the Bird</td>
-            <td>
-            <button className="btn btn_status">In Progress</button>
-            </td>
-            <td>
-              <i className="fas fa-flag"></i>
-            </td>
-            <td>@fat</td>
-          </tr>
+          {tasks &&
+            tasks.length > 0 &&
+            tasks.map((item) => {
+              return (
+                <tr key={item.id}>
+                  <th>
+                    <input type="checkbox" name="select" />
+                  </th>
+                  <td>{item.title}</td>
+                  <td>{item.user}</td>
+                  <td>
+                    <button className={`btn btn_status ${item.status}`}>
+                      {item.status}
+                    </button>
+                  </td>
+                  <td>
+                    <i className={`fas fa-flag ${item.priority}`}></i>
+                  </td>
+                  <td></td>
+                  <td>{item.endDate}</td>
+                </tr>
+              );
+            })}
         </tbody>
       </table>
     </>

@@ -1,5 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { initialState, Task } from "../model/TaskInterface";
+import { useNavigate } from "react-router";
 import "./addtask.scss";
 
 interface props {
@@ -13,19 +14,23 @@ type changeEvent =
 
 const AddTask = ({ addTask }: props) => {
   const [task, setTask] = useState<Task>(initialState);
+  const navigate = useNavigate();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>): any => {
     e.preventDefault();
+
     if (task.title.length === 0 && task.description.length === 0 && task.user === "") return alert("Please fill all fields");
     addTask(task);
+    navigate("/");
   };
 
   const handleChange = (e: changeEvent) => {
-    setTask({ ...task, id: Date.now(), [e.target.name]: e.target.value });
+    console.log(e.target.value);
+    setTask({ ...task, [e.target.name]: e.target.value });
   };
 
   const handleCancel = () => {
-    console.log("hola");
+    setTask(initialState);
   };
 
   return (
@@ -43,6 +48,7 @@ const AddTask = ({ addTask }: props) => {
                 onChange={(e) => handleChange(e)}
                 className="form-control"
                 placeholder="Title"
+                value={task.title}
               />
             </div>
             <div className="form-group">
@@ -51,6 +57,7 @@ const AddTask = ({ addTask }: props) => {
                 type="date"
                 name="endDate"
                 id="endDate"
+                value={task.endDate}
                 onChange={(e) => handleChange(e)}
                 className="form-control"
                 placeholder="End date"
@@ -62,13 +69,14 @@ const AddTask = ({ addTask }: props) => {
                 name="status"
                 id="status"
                 onChange={(e) => handleChange(e)}
+                value={task.status}
               >
-                <option value="">Select status</option>
-                <option defaultChecked value="notStarted">
+                <option value="none">Select status</option>
+                <option value="not started">
                   Not Started
                 </option>
-                <option value="inProgress">In Progess</option>
-                <option value="inReview">In Review</option>
+                <option value="in progress">In Progess</option>
+                <option value="in review">In Review</option>
                 <option value="completed">Completed</option>
               </select>
             </div>
@@ -78,6 +86,7 @@ const AddTask = ({ addTask }: props) => {
                 type="text"
                 name="user"
                 id="user"
+                value={task.user}
                 onChange={(e) => handleChange(e)}
                 className="form-control"
                 placeholder="user"
@@ -89,9 +98,10 @@ const AddTask = ({ addTask }: props) => {
                 name="priority"
                 id="priority"
                 onChange={(e) => handleChange(e)}
+                value={task.priority}
               >
-                <option value="">Select Priority</option>
-                <option defaultChecked value="high">
+                <option value="none">Select Priority</option>
+                <option value="high">
                   High
                 </option>
 
@@ -119,6 +129,7 @@ const AddTask = ({ addTask }: props) => {
                 name="description"
                 id="description"
                 onChange={(e) => handleChange(e)}
+                value={task.description}
                 placeholder="description"
               ></textarea>
               <div className="form-button">

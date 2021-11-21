@@ -7,11 +7,10 @@ interface props {
 }
 
 const Home = ({ tasks }: props) => {
-  console.log(tasks);
   return (
     <div>
       <Header />
-      <Table />
+      <Table tasks={tasks} />
     </div>
   );
 };

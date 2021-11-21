@@ -77,6 +77,10 @@ form {
             padding: 1.5rem;
             outline: none;
             border: 2px solid #ccc;
+            transition: all 0.2s ease-in-out;
+            &:hover {
+                transform: scale(1.05);
+            }
         }
         
        :nth-child(1){
@@ -85,7 +89,7 @@ form {
         
         }
         :nth-child(2){
-            background: rgb(99, 197, 140);
+            background: rgb(47, 167, 97);
             color: white;
             margin-left: 1rem;
         }
