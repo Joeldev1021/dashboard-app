@@ -2,7 +2,7 @@ import "./App.scss";
 // import Home from "./pages/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AddTask from "./pages/AddTask";
-import { Task } from "./model/TaskInterface";
+import { Task } from "./interface/TaskInterface";
 import { useState } from "react";
 import Home from "./pages/Home";
 import Banner from "./components/banner/Banner";

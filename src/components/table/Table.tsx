@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Task } from "../../model/TaskInterface";
+import { Task } from "../../interface/TaskInterface";
 import "./table.scss";
 
 // eslint-disable-next-line no-unused-vars

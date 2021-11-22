@@ -38,9 +38,6 @@
     justify-content: space-between;
 }
 
-.fa-flag {
-    color: #51d157;
-}
 
 .btn_status {
     outline: none;
@@ -73,10 +70,9 @@
     color: var(--blue);
 }
 
-.aditional {
+.additional {
     color: var(--green);
 }
-
 //status 
 
 .started {
@@ -91,6 +87,7 @@
 .completed {
     background: var(--blue);
 }
+
 
 
 

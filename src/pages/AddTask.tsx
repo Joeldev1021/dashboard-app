@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { initialState, Task } from "../model/TaskInterface";
+import { initialState, Task } from "../interface/TaskInterface";
 import { useNavigate } from "react-router";
 import "./addtask.scss";
 
