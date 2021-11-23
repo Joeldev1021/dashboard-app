@@ -1,6 +1,6 @@
 import Header from "../components/header/Header";
 import Table from "../components/table/Table";
-import { Task } from "../model/TaskInterface";
+import { Task } from "../interface/TaskInterface";
 
 interface props {
   tasks?: Task[];

@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { TaskProvider } from "./context/provider/TaskProvider";
+import TaskProvider from "./context/provider/TaskProvider";
 
 ReactDOM.render(
   <React.StrictMode>
