@@ -1,20 +1,20 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useContext, useState } from "react";
+import { TaskContext } from "../context/TaskContext";
 import { initialState, Task } from "../interface/TaskInterface";
 import { useNavigate } from "react-router";
 import "./addtask.scss";
 
-interface props {
-  addTask: (task: Task) => void;
-}
+// eslint-disable-next-line no-unused-vars
 
 type changeEvent =
   | ChangeEvent<HTMLInputElement>
   | ChangeEvent<HTMLTextAreaElement>
   | ChangeEvent<HTMLSelectElement>;
 
-const AddTask = ({ addTask }: props) => {
+const AddTask = () => {
   const [task, setTask] = useState<Task>(initialState);
   const navigate = useNavigate();
+  const { addTask } = useContext(TaskContext);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>): any => {
     e.preventDefault();

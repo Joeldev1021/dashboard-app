@@ -1,3 +1,5 @@
+
+
 .table {
     margin: auto;
     width: 70%;
@@ -7,23 +9,29 @@
         background-color: rgb(228, 228, 228);
     }
 }
-.table__table {
-    display:flex;
+.table__head {
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
     align-items: center;
-    justify-content: space-around;
-    width: 20rem;
+    grid-gap: 1rem;
+    width: 25rem;
 
     .btn__filter {
         background: none;
-        height: auto;
-        margin-right: 1rem;
         border: none;
-        cursor: pointer;
+      
     }    
     .btn__delete {
         background: white;
         color:black;
-        padding: 1.2rem;
+        padding: 1.3rem 0.1rem;
+        width: 8rem;
+        
+    }
+    .btn_add {
+        grid-column: 3;
+        width: 5rem;
+        
     }
 }
 
@@ -47,14 +55,19 @@
 .btn {
     text-decoration: none;
     display: flex;
+    text-align: center;
     align-items: center;
+    justify-content: center;
     background: var(--black);
     color: var(--white);
-    padding: .5rem 1rem;
+    margin: auto;
     height: 2rem;
+    padding: .5rem 1rem;
     border-radius: 5px;
     cursor: pointer;
+    
 }
+
 
 //priorities
 

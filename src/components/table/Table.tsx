@@ -1,25 +1,49 @@
+// eslint-disable-next-line no-unused-vars
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { TaskContext } from "../../context/TaskContext";
 import { Task } from "../../interface/TaskInterface";
+import Modal from "../modal/Modal";
+import ListItem from "./ListItem/ListItem";
 import "./table.scss";
 
-// eslint-disable-next-line no-unused-vars
+const Table = () => {
+  const [isCheck, setIsCheck] = useState<Task[]>([]);
+  const [showModal, setShowModal] = useState(false);
 
-// eslint-disable-next-line no-unused-vars
-const STATUS = ["Not Started", "In Progess", "In Review", "Completed"];
+  const { state, removeTasks } = useContext(TaskContext);
 
-interface props {
-  tasks?: Task[];
-}
+  const handleIsCheck = (task: Task) => {
+    if (isCheck.find(item => item.id === task.id)) return setIsCheck(isCheck.filter(item => item.id !== task.id));
+    setIsCheck([...isCheck, task]);
+  };
 
-const Table = ({ tasks }: props) => {
+  const handleCloseModal = () => {
+    setShowModal(!showModal);
+  };
+
+  const handleRemove = () => {
+    removeTasks();
+    setShowModal(!showModal);
+    setIsCheck([]);
+  };
+
   return (
     <>
       <div className="container">
-        <h1>All Task</h1>
-        <div className="table__table">
-          <button className="btn__filter"><i className="fas fa-filter"></i></button>
-          <button className="btn btn__delete">Delete</button>
-          <Link className="btn" to="/add">
+        {
+          showModal && <Modal handleCloseModal={handleCloseModal} handleRemove={handleRemove} tasks={isCheck}/>
+        }
+        {state.tasks.length > 0 ? <h1>All Task</h1> : <h1>No Task</h1>}
+        <div className="table__head">
+          <button className="btn__filter">
+            <i className="fas fa-filter"></i>
+          </button>
+          {
+            isCheck.length > 0 && <button onClick={() => handleCloseModal()} className="btn btn__delete">Delete {`(${isCheck.length})`}</button>
+          }
+
+          <Link className="btn btn_add" to="/add">
             Add Task
           </Link>
         </div>
@@ -37,29 +61,8 @@ const Table = ({ tasks }: props) => {
           </tr>
         </thead>
         <tbody className="tbody">
-          {tasks &&
-            tasks.length > 0 &&
-            tasks.map((item) => {
-              return (
-                <tr key={item.id}>
-                  <th>
-                    <input type="checkbox" name="select" />
-                  </th>
-                  <td>{item.title}</td>
-                  <td>{item.user}</td>
-                  <td>
-                    <button className={`btn btn_status ${item.status}`}>
-                      {item.status}
-                    </button>
-                  </td>
-                  <td>
-                    <i className={`fas fa-flag ${item.priority}`}></i>
-                  </td>
-                  <td></td>
-                  <td>{item.endDate}</td>
-                </tr>
-              );
-            })}
+          {state.tasks.length > 0 &&
+            state.tasks.map((item) => <ListItem key={item.id} item={item} handleIsCheck={handleIsCheck}/>)}
         </tbody>
       </table>
     </>
