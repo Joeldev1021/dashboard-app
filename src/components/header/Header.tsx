@@ -1,12 +1,15 @@
 import "./header.scss";
 import Search from "../search/Search";
 
-const Header = () => {
+interface props {
+  handleSearch: (e: string) => void;
+}
+
+const Header = ({ handleSearch }: props) => {
   return (
     <header className="header">
       <div className="container">
-        <h1>Desboard-App</h1>
-        <Search />
+        <Search handleSearch={handleSearch}/>
       </div>
     </header>
   );

@@ -1,24 +1,42 @@
-// eslint-disable-next-line no-unused-vars
-import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
 import { TaskContext } from "../../context/TaskContext";
 import { Task } from "../../interface/TaskInterface";
+import Filter from "../filter/Filter";
 import Modal from "../modal/Modal";
 import ListItem from "./ListItem/ListItem";
 import "./table.scss";
+import TableHead from "./tableHead/TableHead";
 
-const Table = () => {
+interface props {
+  search: string;
+}
+
+const Table = ({ search } : props) => {
+  const { state, removeTasks } = useContext(TaskContext);
   const [isCheck, setIsCheck] = useState<Task[]>([]);
   const [showModal, setShowModal] = useState(false);
+  const [showFilter, setShowFilter] = useState(false);
+  const [isTasks, setIsTasks] = useState<Task[]>(state.tasks);
 
-  const { state, removeTasks } = useContext(TaskContext);
+  useEffect(() => {
+    if (search.length > 0) {
+      setIsTasks(isTasks.filter((task: Task) => task.title.includes(search)));
+    }
+    if (search.length === 0) {
+      setIsTasks(state.tasks);
+    }
+  }, [search]);
+
+  useEffect(() => {
+    setIsTasks(state.tasks);
+  }, [state.tasks]);
 
   const handleIsCheck = (task: Task) => {
-    if (isCheck.find(item => item.id === task.id)) return setIsCheck(isCheck.filter(item => item.id !== task.id));
+    if (isCheck.find((item) => item.id === task.id)) { return setIsCheck(isCheck.filter((item) => item.id !== task.id)); }
     setIsCheck([...isCheck, task]);
   };
 
-  const handleCloseModal = () => {
+  const handleShowModal = () => {
     setShowModal(!showModal);
   };
 
@@ -28,41 +46,49 @@ const Table = () => {
     setIsCheck([]);
   };
 
+  const handleShowFilter = () => {
+    setShowFilter(!showFilter);
+  };
+
   return (
     <>
+      {showModal && (
+        <Modal
+          handleShowModal={handleShowModal}
+          handleRemove={handleRemove}
+          tasks={isCheck}
+        />
+      )}
       <div className="container">
-        {
-          showModal && <Modal handleCloseModal={handleCloseModal} handleRemove={handleRemove} tasks={isCheck}/>
-        }
         {state.tasks.length > 0 ? <h1>All Task</h1> : <h1>No Task</h1>}
-        <div className="table__head">
-          <button className="btn__filter">
-            <i className="fas fa-filter"></i>
-          </button>
-          {
-            isCheck.length > 0 && <button onClick={() => handleCloseModal()} className="btn btn__delete">Delete {`(${isCheck.length})`}</button>
-          }
-
-          <Link className="btn btn_add" to="/add">
-            Add Task
-          </Link>
-        </div>
+        <TableHead
+          handleShowModal={handleShowModal}
+          isCheck={isCheck}
+          handleShowFilter={handleShowFilter}
+        />
       </div>
+      {showFilter && <Filter />}
       <table className="table">
         <thead>
           <tr>
             <th>action</th>
             <th>Task</th>
             <th>user</th>
-            <th>Status</th>
-            <th>Priority</th>
-            <th>Progress</th>
+            <th style={{ textAlign: "center" }}>Status</th>
+            <th style={{ textAlign: "center" }}>Priority</th>
+            <th style={{ textAlign: "center" }}>Progress</th>
             <th>End date</th>
           </tr>
         </thead>
         <tbody className="tbody">
-          {state.tasks.length > 0 &&
-            state.tasks.map((item) => <ListItem key={item.id} item={item} handleIsCheck={handleIsCheck}/>)}
+          {isTasks.length > 0 &&
+            isTasks.map((item) => (
+              <ListItem
+                key={item.id}
+                item={item}
+                handleIsCheck={handleIsCheck}
+              />
+            ))}
         </tbody>
       </table>
     </>

@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AddTask from "./pages/AddTask";
 import Home from "./pages/Home";
 import Banner from "./components/banner/Banner";
+import Progress from "./components/progress/Progress";
 
 // import Progress from "./components/progress/Progress";
 
@@ -15,6 +16,7 @@ function App () {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/add" element={<AddTask />} />
+          <Route path="/progress" element={<Progress />} />
         </Routes>
       </BrowserRouter>
     </div>

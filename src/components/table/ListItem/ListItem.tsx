@@ -3,6 +3,7 @@ import { ChangeEvent, useContext } from "react";
 
 import { TaskContext } from "../../../context/TaskContext";
 import { Task } from "../../../interface/TaskInterface";
+import Progress from "../../progress/Progress";
 
 interface props {
   item: Task;
@@ -28,15 +29,15 @@ const ListItem = ({ item, handleIsCheck }: props) => {
       </th>
       <td>{item.title}</td>
       <td>{item.user}</td>
-      <td>
+      <td style={{ textAlign: "center" }}>
         <button className={`btn btn_status ${item.status}`}>
           {item.status}
         </button>
       </td>
-      <td>
+      <td style={{ textAlign: "center" }}>
         <i className={`fas fa-flag ${item.priority}`}></i>
       </td>
-      <td></td>
+      <td><Progress/></td>
       <td>{item.endDate}</td>
     </tr>
   );

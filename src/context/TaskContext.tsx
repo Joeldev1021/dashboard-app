@@ -6,6 +6,7 @@ export type TaskContextProps = {
     removeTasks: () => void;
     addTask: (task: Task) => void;
     editeTask?: (task: TaskState) => void;
+    filterTask: (filter: string) => void;
     addSelectTask: (id: number) => void;
 }
 

@@ -6,6 +6,7 @@ type TaskAction =
     | { type: "SELECT_TASK", payload: number}
 
 export const reducerTask = (state: TaskState, action: TaskAction): TaskState => {
+  console.log(action.payload);
   switch (action.type) {
     case "ADD_TASK":
       return {

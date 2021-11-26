@@ -78,6 +78,7 @@ const AddTask = () => {
                 <option value="in progress">In Progess</option>
                 <option value="in review">In Review</option>
                 <option value="completed">Completed</option>
+                <option value="cancellled">Cancellled</option>
               </select>
             </div>
             <div className="form-group">

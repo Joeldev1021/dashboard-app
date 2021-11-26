@@ -2,15 +2,16 @@ import "./styles.scss";
 const Progress = () => {
   return (
     <>
-      <div className="pie-wrapper progress-45 style-2">
-        <span className="label">
-          45<span className="smaller">%</span>
-        </span>
-        <div className="pie">
-          <div className="left-side half-circle"></div>
-          <div className="right-side half-circle"></div>
+      <div className="circle-wrap">
+        <div className="circle">
+          <div className="mask full">
+            <div className="fill"></div>
+          </div>
+          <div className="mask half">
+            <div className="fill"></div>
+          </div>
+          <div className="inside-circle"> 75% </div>
         </div>
-        <div className="shadow"></div>
       </div>
     </>
   );

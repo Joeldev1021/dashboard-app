@@ -5,6 +5,7 @@
     width: 70%;
     border-collapse: collapse;
     font-size: 1.5rem;
+    text-align: left;
      tr:hover {
         background-color: rgb(228, 228, 228);
     }
@@ -19,7 +20,7 @@
     .btn__filter {
         background: none;
         border: none;
-      
+       cursor: pointer;
     }    
     .btn__delete {
         background: white;
@@ -52,6 +53,7 @@
     margin:auto;
     text-transform: capitalize;
 }
+
 .btn {
     text-decoration: none;
     display: flex;
@@ -89,18 +91,20 @@
 //status 
 
 .started {
-    background: var(--red);
+    background: var(--red2);
 }
 .progress {
-    background: var(--orange);
-}
-.review {
-    background: var(--green);
-}
-.completed {
     background: var(--blue);
 }
-
+.review {
+    background: var(--yellow);
+}
+.completed {
+    background: var(--green);
+}
+.cancelled {
+    background: var(--red);
+}
 
 
 

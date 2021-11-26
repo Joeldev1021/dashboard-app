@@ -1,11 +1,22 @@
+/* eslint-disable no-unused-vars */
+import { useContext, useState } from "react";
 import Header from "../components/header/Header";
 import Table from "../components/table/Table";
+import { TaskContext } from "../context/TaskContext";
 
 const Home = () => {
+  const [search, setSearch] = useState("");
+
+  const { filterTask } = useContext(TaskContext);
+
+  const handleSearch = (n: string) => {
+    setSearch(n);
+  };
+
   return (
     <div>
-      <Header />
-      <Table />
+      <Header handleSearch={handleSearch}/>
+      <Table search={search}/>
     </div>
   );
 };

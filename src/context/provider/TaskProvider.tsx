@@ -32,6 +32,10 @@ const TaskProvider = ({ children }: props) => {
     dispatch({ type: "SELECT_TASK", payload: id });
   };
 
+  const filterTask = (filter: string) => {
+    console.log(filter);
+  };
+
   const removeTasks = () => {
     dispatch({ type: "REMOVE_TASK", payload: null });
   };
@@ -41,7 +45,8 @@ const TaskProvider = ({ children }: props) => {
       state,
       addTask,
       addSelectTask,
-      removeTasks
+      removeTasks,
+      filterTask
     }}>
       {children}
     </TaskContext.Provider>
