@@ -12,12 +12,15 @@ interface props {
 }
 
 const Table = ({ search } : props) => {
+  // state tasks from context
   const { state, removeTasks } = useContext(TaskContext);
+
   const [isCheck, setIsCheck] = useState<Task[]>([]);
   const [showModal, setShowModal] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
   const [isTasks, setIsTasks] = useState<Task[]>(state.tasks);
-
+  const [itemFilter, setItemFilter] = useState<Array<string>>([]);
+  // useEffect to filter tasks the search
   useEffect(() => {
     if (search.length > 0) {
       setIsTasks(isTasks.filter((task: Task) => task.title.includes(search)));
@@ -26,11 +29,22 @@ const Table = ({ search } : props) => {
       setIsTasks(state.tasks);
     }
   }, [search]);
-
+  // update tasks when remove and add task
   useEffect(() => {
     setIsTasks(state.tasks);
-  }, [state.tasks]);
+  }, [state.tasks, itemFilter]);
 
+  // useEffect to filter tasks the filter item
+  useEffect(() => {
+    if (itemFilter.length > 0) {
+      setIsTasks(isTasks.filter((task: Task) => itemFilter.includes(task.status)));
+    }
+    if (itemFilter.length === 0) {
+      setIsTasks(state.tasks);
+    }
+  }, [itemFilter]);
+
+  // change status of task
   const handleIsCheck = (task: Task) => {
     if (isCheck.find((item) => item.id === task.id)) { return setIsCheck(isCheck.filter((item) => item.id !== task.id)); }
     setIsCheck([...isCheck, task]);
@@ -50,6 +64,11 @@ const Table = ({ search } : props) => {
     setShowFilter(!showFilter);
   };
 
+  const handlesetFilterProgress = (filter: string) => {
+    if (itemFilter.includes(filter)) return setItemFilter(itemFilter.filter((item) => item !== filter));
+    setItemFilter([...itemFilter, filter]);
+  };
+
   return (
     <>
       {showModal && (
@@ -67,7 +86,7 @@ const Table = ({ search } : props) => {
           handleShowFilter={handleShowFilter}
         />
       </div>
-      {showFilter && <Filter />}
+      {showFilter && <Filter handlesetFilterProgress={handlesetFilterProgress} itemFilter={itemFilter}/>}
       <table className="table">
         <thead>
           <tr>

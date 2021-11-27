@@ -10,7 +10,10 @@ const INITIAL_STATE:TaskState = {
     { id: 1637452283892, select: false, title: "create footer", endDate: "2021-11-26", status: "not started", priority: "low", progress: 0, description: "create footer", user: "jhon" },
     { id: 1637452321861, select: false, title: "create navbar", endDate: "2021-12-04", status: "in progress", priority: "low", progress: 0, description: "create navbar", user: "daniel" },
     { id: 1637452372667, select: false, title: "create routes the api", endDate: "2021-11-22", status: "in progress", priority: "high", progress: 0, description: "create routes the api", user: "vim" },
-    { id: 1637452410590, select: false, title: "icons", endDate: "2021-11-25", status: "in progress", priority: "additional", progress: 0, description: "icons", user: "joel" }
+    { id: 1637452410590, select: false, title: "icons", endDate: "2021-11-25", status: "in progress", priority: "additional", progress: 0, description: "icons", user: "joel" },
+    { id: 1637459321861, select: false, title: "refactor", endDate: "2021-12-04", status: "completed", priority: "low", progress: 0, description: "create navbar", user: "ryan" },
+    { id: 1637459372667, select: false, title: "fix error", endDate: "2021-11-22", status: "cancelled", priority: "high", progress: 0, description: "create routes the api", user: "vim" },
+    { id: 1647452410590, select: false, title: "conectDb", endDate: "2021-11-25", status: "in review", priority: "additional", progress: 0, description: "icons", user: "main20" }
   ]
 };
 
