@@ -1,5 +1,8 @@
+/* eslint-disable no-unused-vars */
 import { useContext, useEffect, useState } from "react";
 import { TaskContext } from "../../context/TaskContext";
+import { useFilterItem } from "../../helper/useFilterItem";
+
 import { Task } from "../../interface/TaskInterface";
 import Filter from "../filter/Filter";
 import Modal from "../modal/Modal";
@@ -20,6 +23,17 @@ const Table = ({ search } : props) => {
   const [showFilter, setShowFilter] = useState(false);
   const [isTasks, setIsTasks] = useState<Task[]>(state.tasks);
   const [itemFilter, setItemFilter] = useState<Array<string>>([]);
+  // useEffect to filter tasks the filter item
+  const { newTasks } = useFilterItem(itemFilter, state.tasks);
+
+  useEffect(() => {
+    if (itemFilter.length > 0) {
+      setIsTasks(newTasks);
+    }
+    if (itemFilter.length === 0) {
+      setIsTasks(state.tasks);
+    }
+  }, [itemFilter, newTasks]);
   // useEffect to filter tasks the search
   useEffect(() => {
     if (search.length > 0) {
@@ -32,17 +46,9 @@ const Table = ({ search } : props) => {
   // update tasks when remove and add task
   useEffect(() => {
     setIsTasks(state.tasks);
-  }, [state.tasks, itemFilter]);
+  }, [state.tasks]);
 
   // useEffect to filter tasks the filter item
-  useEffect(() => {
-    if (itemFilter.length > 0) {
-      setIsTasks(isTasks.filter((task: Task) => itemFilter.includes(task.status)));
-    }
-    if (itemFilter.length === 0) {
-      setIsTasks(state.tasks);
-    }
-  }, [itemFilter]);
 
   // change status of task
   const handleIsCheck = (task: Task) => {
@@ -50,21 +56,22 @@ const Table = ({ search } : props) => {
     setIsCheck([...isCheck, task]);
   };
 
+  // show modal
   const handleShowModal = () => {
     setShowModal(!showModal);
   };
-
+  // remove tasks and close modal
   const handleRemove = () => {
     removeTasks();
     setShowModal(!showModal);
     setIsCheck([]);
   };
-
+  // show filters
   const handleShowFilter = () => {
     setShowFilter(!showFilter);
   };
 
-  const handlesetFilterProgress = (filter: string) => {
+  const handlesetFilter = (filter: string) => {
     if (itemFilter.includes(filter)) return setItemFilter(itemFilter.filter((item) => item !== filter));
     setItemFilter([...itemFilter, filter]);
   };
@@ -86,7 +93,7 @@ const Table = ({ search } : props) => {
           handleShowFilter={handleShowFilter}
         />
       </div>
-      {showFilter && <Filter handlesetFilterProgress={handlesetFilterProgress} itemFilter={itemFilter}/>}
+      {showFilter && <Filter handlesetFilter={handlesetFilter} itemFilter={itemFilter}/>}
       <table className="table">
         <thead>
           <tr>
