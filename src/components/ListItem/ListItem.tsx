@@ -1,9 +1,9 @@
 // eslint-disable-next-line no-unused-vars
 import { ChangeEvent, useContext } from "react";
 
-import { TaskContext } from "../../../context/TaskContext";
-import { Task } from "../../../interface/TaskInterface";
-import Progress from "../../progress/Progress";
+import { TaskContext } from "../../context/TaskContext";
+import { Task } from "../../interface/TaskInterface";
+import Progress from "../progress/Progress";
 
 interface props {
   item: Task;
