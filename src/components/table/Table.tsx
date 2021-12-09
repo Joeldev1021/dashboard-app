@@ -17,7 +17,6 @@ interface props {
 const Table = ({ search } : props) => {
   // state tasks from context
   const { state, removeTasks } = useContext(TaskContext);
-
   const [isCheck, setIsCheck] = useState<Task[]>([]);
   const [showModal, setShowModal] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
@@ -26,6 +25,7 @@ const Table = ({ search } : props) => {
   // useEffect to filter tasks the filter item
   const { newTasks } = useFilterItem(itemFilter, state.tasks);
 
+  console.log(newTasks);
   useEffect(() => {
     if (itemFilter.length > 0) {
       setIsTasks(newTasks);
@@ -40,7 +40,7 @@ const Table = ({ search } : props) => {
       setIsTasks(isTasks.filter((task: Task) => task.title.includes(search)));
     }
     if (search.length === 0) {
-      setIsTasks(state.tasks);
+      setIsTasks(newTasks);
     }
   }, [search]);
   // update tasks when remove and add task

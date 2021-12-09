@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import { ChangeEvent, useContext } from "react";
+import "./listItem.scss";
 
 import { TaskContext } from "../../context/TaskContext";
 import { Task } from "../../interface/TaskInterface";
@@ -37,7 +38,7 @@ const ListItem = ({ item, handleIsCheck }: props) => {
       <td style={{ textAlign: "center" }}>
         <i className={`fas fa-flag ${item.priority}`}></i>
       </td>
-      <td><Progress/></td>
+      <td><Progress item={item}/></td>
       <td>{item.endDate}</td>
     </tr>
   );

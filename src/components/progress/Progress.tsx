@@ -1,5 +1,10 @@
+
+import { Task } from "../../interface/TaskInterface";
 import "./styles.scss";
-const Progress = () => {
+interface props {
+  item: Task ;
+}
+const Progress = ({ item }: props) => {
   return (
     <>
       <div className="circle-wrap">
@@ -10,7 +15,7 @@ const Progress = () => {
           <div className="mask half">
             <div className="fill"></div>
           </div>
-          <div className="inside-circle"> 75% </div>
+          <div className="inside-circle">{item.progress > 0 ? `${item.progress}0%` : "0%"}</div>
         </div>
       </div>
     </>

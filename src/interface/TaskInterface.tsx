@@ -4,7 +4,7 @@ export interface Task {
   endDate: string;
   status:string;
   priority: string;
-  progress?: number;
+  progress: number;
   description: string;
   select: boolean;
   user: string
