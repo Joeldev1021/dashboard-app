@@ -25,6 +25,19 @@
         display: flex;
         width:20rem ;
         margin: auto;
+        .btn {
+            background: white;
+            color: black;
+            padding: 1.3rem 0.1rem;
+            width: 8rem;
+            border: solid 1px rgb(153, 153, 153);
+        }
+        .btn__delete{
+            background: black;
+            color: white;
+            width: 8rem;
+            border: black;
+        }
     }
     .list__modal {
         text-align: left;

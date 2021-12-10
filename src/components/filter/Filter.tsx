@@ -9,16 +9,18 @@ const arrayPriority = ["low", "medium", "high"];
 interface props {
   handlesetFilter: (filter: string) => void;
   itemFilter: Array<string>;
+  showFilter: boolean;
 }
 
-const Filter = ({ handlesetFilter, itemFilter }: props) => {
+const Filter = ({ handlesetFilter, itemFilter, showFilter }: props) => {
   const addFilter = (event: MouseEvent) => {
     const n = (event.target as HTMLElement).textContent;
     handlesetFilter(`${n}`);
   };
+  console.log(showFilter);
 
   return (
-    <div className="container__filter">
+    <div className={`container__filter ${showFilter ? "hidden" : ""}`}>
       <div className="col__filter" >
         <p className="title__filter">Status</p>
         {

@@ -25,7 +25,6 @@ const Table = ({ search } : props) => {
   // useEffect to filter tasks the filter item
   const { newTasks } = useFilterItem(itemFilter, state.tasks);
 
-  console.log(newTasks);
   useEffect(() => {
     if (itemFilter.length > 0) {
       setIsTasks(newTasks);
@@ -93,7 +92,7 @@ const Table = ({ search } : props) => {
           handleShowFilter={handleShowFilter}
         />
       </div>
-      {showFilter && <Filter handlesetFilter={handlesetFilter} itemFilter={itemFilter}/>}
+      <Filter showFilter={showFilter} handlesetFilter={handlesetFilter} itemFilter={itemFilter}/>
       <table className="table">
         <thead>
           <tr>
