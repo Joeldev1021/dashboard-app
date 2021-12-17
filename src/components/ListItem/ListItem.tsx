@@ -4,7 +4,7 @@ import "./listItem.scss";
 
 import { TaskContext } from "../../context/TaskContext";
 import { Task } from "../../interface/TaskInterface";
-import Progress from "../progress/Progress";
+import Progress from "../Progress/Progress";
 
 interface props {
   item: Task;
@@ -38,7 +38,7 @@ const ListItem = ({ item, handleIsCheck }: props) => {
       <td style={{ textAlign: "center" }}>
         <i className={`fas fa-flag ${item.priority}`}></i>
       </td>
-      <td><Progress item={item}/></td>
+      <td><Progress task={item}/></td>
       <td>{item.endDate}</td>
     </tr>
   );

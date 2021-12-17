@@ -1,24 +1,26 @@
-
+import { useEffect, useRef } from "react";
+import useCanvaJs from "../../helpers/useCanvaJs";
 import { Task } from "../../interface/TaskInterface";
-import "./styles.scss";
-interface props {
-  item: Task ;
+import "./index.scss";
+
+interface Props {
+  task: Task;
 }
-const Progress = ({ item }: props) => {
+
+const Progress = ({ task }:Props) => {
+  console.log(task);
+
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const spanProcent = useRef<HTMLSpanElement>(null);
+  useEffect(() => {
+    useCanvaJs(canvasRef.current, spanProcent.current, task.progress, task.status);
+  }, []);
+
   return (
-    <>
-      <div className="circle-wrap">
-        <div className="circle">
-          <div className="mask full">
-            <div className="fill"></div>
-          </div>
-          <div className="mask half">
-            <div className="fill"></div>
-          </div>
-          <div className="inside-circle">{item.progress > 0 ? `${item.progress}0%` : "0%"}</div>
-        </div>
-      </div>
-    </>
+    <div className="canvas-wrap">
+      <canvas id="canvas" ref={canvasRef} width="50" height="50"></canvas>
+      <span id="procent" ref={spanProcent}></span>
+    </div>
   );
 };
 
