@@ -4,9 +4,9 @@ export interface Task {
   endDate: string;
   status:string;
   priority: string;
-  progress: number;
+  progress: string;
   description: string;
-  select: boolean;
+  select?: boolean;
   user: string
 }
 
@@ -20,7 +20,7 @@ export const initialState = {
   endDate: new Date().toISOString().split("T")[0],
   status: "",
   priority: "",
-  progress: 0,
+  progress: "",
   description: "",
   select: false,
   user: ""

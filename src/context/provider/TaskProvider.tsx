@@ -3,7 +3,6 @@
 import { useReducer } from "react";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { Task, TaskState } from "../../interface/TaskInterface";
-
 import { reducerTask } from "../reducer/reducerTask";
 import { TaskContext } from "../TaskContext";
 
@@ -16,7 +15,12 @@ interface props {
 }
 
 const TaskProvider = ({ children }: props) => {
-  const [state, dispatch] = useReducer(reducerTask, INITIAL_STATE);
+  // hook local storage
+  const { saveLocalTask } = useLocalStorage({ tasks: [] });
+  // get tasks from localStorage
+  const init = saveLocalTask.length > 0 ? { tasks: saveLocalTask } : INITIAL_STATE;
+
+  const [state, dispatch] = useReducer(reducerTask, init);
 
   const addTask = (task: Task) => {
     const newTask = { ...task, id: Date.now() };

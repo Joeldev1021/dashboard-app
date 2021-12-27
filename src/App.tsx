@@ -1,11 +1,8 @@
 import "./App.scss";
-// import Home from "./pages/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AddTask from "./pages/AddTask";
 import Home from "./pages/Home";
 import Banner from "./components/banner/Banner";
-
-// import Progress from "./components/progress/Progress";
 
 function App () {
   return (

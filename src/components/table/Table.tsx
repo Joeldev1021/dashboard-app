@@ -28,6 +28,9 @@ const Table = ({ search } : props) => {
   // useEffect to filter tasks the filter item
   const { newTasks } = useFilterItem(itemFilter, state.tasks);
 
+  const { saveItem } = useLocalStorage({ tasks: state.tasks });
+  console.log(state.tasks);
+
   useEffect(() => {
     if (itemFilter.length > 0) {
       setIsTasks(newTasks);
@@ -48,7 +51,7 @@ const Table = ({ search } : props) => {
   // update tasks when remove and add task
   useEffect(() => {
     setIsTasks(state.tasks);
-    useLocalStorage({ tasks: state.tasks });
+    saveItem(state.tasks);
   }, [state.tasks]);
 
   // useEffect to filter tasks the filter item
