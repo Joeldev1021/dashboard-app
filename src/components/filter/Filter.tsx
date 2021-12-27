@@ -17,7 +17,7 @@ const Filter = ({ handlesetFilter, itemFilter, showFilter }: props) => {
     const n = (event.target as HTMLElement).textContent;
     handlesetFilter(`${n}`);
   };
-  console.log(showFilter);
+  // console.log(showFilter);
 
   return (
     <div className={`container__filter ${showFilter ? "hidden" : ""}`}>

@@ -3,7 +3,7 @@ import "./styles.scss";
 
 const Banner = () => {
   return (
-    <div>
+    <div className="banner">
       <Link className="logo" to="/">
         <h1>
           DS<span style={{ color: "red" }}>A</span>{" "}

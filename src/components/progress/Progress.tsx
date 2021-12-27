@@ -8,8 +8,6 @@ interface Props {
 }
 
 const Progress = ({ task }:Props) => {
-  console.log(task);
-
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const spanProcent = useRef<HTMLSpanElement>(null);
   useEffect(() => {

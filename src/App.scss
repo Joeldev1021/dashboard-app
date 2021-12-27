@@ -2,5 +2,16 @@
   text-align: center;
   display:grid;
   grid-template-columns: 10% 90%;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 100%;
+    .banner {
+      display: none;
+    }
+  }
+  
 }
+
+
+
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-empty-pattern */
 /* eslint-disable no-unused-vars */
 import { useContext, useEffect, useState } from "react";
 import { TaskContext } from "../../context/TaskContext";
@@ -9,6 +10,7 @@ import Modal from "../modal/Modal";
 import ListItem from "../ListItem/ListItem";
 import "./table.scss";
 import TableHead from "../tableHead/TableHead";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 interface props {
   search: string;
@@ -16,6 +18,7 @@ interface props {
 
 const Table = ({ search } : props) => {
   // state tasks from context
+
   const { state, removeTasks } = useContext(TaskContext);
   const [isCheck, setIsCheck] = useState<Task[]>([]);
   const [showModal, setShowModal] = useState(false);
@@ -45,6 +48,7 @@ const Table = ({ search } : props) => {
   // update tasks when remove and add task
   useEffect(() => {
     setIsTasks(state.tasks);
+    useLocalStorage({ tasks: state.tasks });
   }, [state.tasks]);
 
   // useEffect to filter tasks the filter item

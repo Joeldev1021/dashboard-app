@@ -9,6 +9,10 @@
      tr:hover {
         background-color: rgb(228, 228, 228);
     }
+    @media screen and (max-width: 768px) {
+        width: 90%;
+    }
+    
 }
 .table__head {
     display:grid;
