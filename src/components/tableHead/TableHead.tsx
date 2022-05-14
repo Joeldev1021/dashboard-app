@@ -4,11 +4,13 @@ import { Task } from "../../interface/TaskInterface";
 
 interface props {
     tasks: Task[];
-    handleShowFilter: () => void;
+    showFilter: boolean;
+    showModal: boolean;
     setShowModal: (value: boolean) => void;
+    setShowFilter: (value: boolean) => void;
 }
 
-const TableHead = ({ tasks, handleShowFilter, setShowModal }:props) => {
+const TableHead = ({ tasks, showFilter, setShowModal, setShowFilter }:props) => {
   const [tasksIsCheck, setTasksIsCheck] = useState(tasks.filter((task:Task) => task.select === true));
 
   /* update tasksIscheck */
@@ -18,7 +20,7 @@ const TableHead = ({ tasks, handleShowFilter, setShowModal }:props) => {
 
   return (
     <div className="table__head">
-      <button onClick={() => handleShowFilter()} className="btn__filter">
+      <button onClick={() => setShowFilter(!showFilter)} className="btn__filter">
         <i className="fas fa-filter"></i>
       </button>
       {tasksIsCheck.length > 0 && (
