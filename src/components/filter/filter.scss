@@ -29,16 +29,13 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        
-        p {
-            cursor: pointer;
-        }
+        cursor: pointer;
         
         .filter__close {
             font-weight: bold;
             text-transform: lowercase;
             margin-left: 1.5rem;
-            cursor: default;
+            cursor: pointer;
         }
     }
    
