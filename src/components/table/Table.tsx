@@ -15,22 +15,23 @@ interface props {
 }
 
 const Table = ({ search } : props) => {
-  // state tasks from context
   const { state } = useContext(TaskContext);
   const [showModal, setShowModal] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [itemFilter, setItemFilter] = useState<Array<string>>([]);
+  const [itemFilter, setItemFilter] = useState<string[]>([]);
 
   const { saveItem } = useLocalStorage({ tasks: state.tasks });
 
   useEffect(() => {
-    setTasks(state.tasks);
-  }, [state.tasks]);
+    if (itemFilter.length > 0) {
+      setTasks(state.tasks.filter((task: Task) => itemFilter.includes(task.status) || itemFilter.includes(task.priority)));
+    } else if (itemFilter.length === 0) {
+      setTasks(state.tasks);
+    }
+  }, [state.tasks, itemFilter]);
 
-  ;
-
-  const handleSetShowFilter = (filter: string) => {
+  const handleFilter = (filter: string) => {
     if (itemFilter.includes(filter)) return setItemFilter(itemFilter.filter((item) => item !== filter));
     setItemFilter([...itemFilter, filter]);
   };
@@ -41,6 +42,7 @@ const Table = ({ search } : props) => {
         <Modal
           setShowModal={setShowModal}
           tasks={tasks}
+
         />
       )}
       <div className="container">
@@ -53,7 +55,7 @@ const Table = ({ search } : props) => {
         tasks={tasks}
         />
       </div>
-      <Filter showFilter={showFilter} handleSetFilter={handleSetShowFilter} itemFilter={itemFilter}/>
+      <Filter showFilter={showFilter} handleFilter={handleFilter} itemFilter={itemFilter}/>
       <table className="table">
         <thead>
           <tr>
