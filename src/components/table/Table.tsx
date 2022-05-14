@@ -1,9 +1,7 @@
-/* eslint-disable no-empty-pattern */
 /* eslint-disable no-unused-vars */
 import { useContext, useEffect, useState } from "react";
 import { TaskContext } from "../../context/TaskContext";
 import { useFilterItem } from "../../hooks/useFilterItem";
-
 import { Task } from "../../interface/TaskInterface";
 import Filter from "../filter/Filter";
 import Modal from "../modal/Modal";
@@ -18,57 +16,21 @@ interface props {
 
 const Table = ({ search } : props) => {
   // state tasks from context
-
   const { state } = useContext(TaskContext);
   const [showModal, setShowModal] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
-  const [isTasks, setIsTasks] = useState<Task[]>(state.tasks);
+  const [tasks, setTasks] = useState<Task[]>([]);
   const [itemFilter, setItemFilter] = useState<Array<string>>([]);
-  // useEffect to filter tasks the filter item
-  const { newTasks } = useFilterItem(itemFilter, state.tasks);
 
   const { saveItem } = useLocalStorage({ tasks: state.tasks });
-  console.log(state.tasks);
 
-  // useEffect to filter tasks the search
   useEffect(() => {
-    if (search.length > 0) {
-      setIsTasks(isTasks.filter((task: Task) => task.title.includes(search)));
-    }
-    if (search.length === 0) {
-      setIsTasks(newTasks);
-    }
-  }, [search]);
-  // update tasks when remove and add task
-  useEffect(() => {
-    setIsTasks(state.tasks);
-    saveItem(state.tasks);
+    setTasks(state.tasks);
   }, [state.tasks]);
 
-  // useEffect to filter tasks the filter item
+  ;
 
-  // change status of task
-  const handleIsCheck = (task: Task) => {
-    if (isCheck.find((item) => item.id === task.id)) { return setIsCheck(isCheck.filter((item) => item.id !== task.id)); }
-    setIsCheck([...isCheck, task]);
-  };
-
-  // show modal
-  const handleShowModal = () => {
-    setShowModal(!showModal);
-  };
-  // remove tasks and close modal
-  const handleRemove = () => {
-    removeTasks();
-    setShowModal(!showModal);
-    setIsCheck([]);
-  };
-  // show filters
-  const handleShowFilter = () => {
-    setShowFilter(!showFilter);
-  };
-
-  const handlesetFilter = (filter: string) => {
+  const handleSetShowFilter = (filter: string) => {
     if (itemFilter.includes(filter)) return setItemFilter(itemFilter.filter((item) => item !== filter));
     setItemFilter([...itemFilter, filter]);
   };
@@ -77,20 +39,21 @@ const Table = ({ search } : props) => {
     <>
       {showModal && (
         <Modal
-          handleShowModal={handleShowModal}
-          handleRemove={handleRemove}
-          tasks={isCheck}
+          setShowModal={setShowModal}
+          tasks={tasks}
         />
       )}
       <div className="container">
         {state.tasks.length > 0 ? <h1>All Task</h1> : <h1>No Task</h1>}
         <TableHead
-          handleShowModal={handleShowModal}
-          isCheck={isCheck}
-          handleShowFilter={handleShowFilter}
+        showFilter={showFilter}
+        setShowFilter={setShowFilter}
+        showModal={showModal}
+        setShowModal={setShowModal}
+        tasks={tasks}
         />
       </div>
-      <Filter showFilter={showFilter} handlesetFilter={handlesetFilter} itemFilter={itemFilter}/>
+      <Filter showFilter={showFilter} handleSetFilter={handleSetShowFilter} itemFilter={itemFilter}/>
       <table className="table">
         <thead>
           <tr>
@@ -104,12 +67,11 @@ const Table = ({ search } : props) => {
           </tr>
         </thead>
         <tbody className="tbody">
-          {isTasks.length > 0 &&
-            isTasks.map((item) => (
+          {tasks.length > 0 &&
+            tasks.map((task:Task) => (
               <ListItem
-                key={item.id}
-                item={item}
-                handleIsCheck={handleIsCheck}
+                key={task.id}
+                task={task}
               />
             ))}
         </tbody>
