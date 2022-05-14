@@ -7,27 +7,25 @@ const arrayProgress = ["not started", "in progress", "in review", "completed", "
 const arrayPriority = ["low", "medium", "high"];
 
 interface props {
-  handlesetFilter: (filter: string) => void;
-  itemFilter: Array<string>;
+  handleFilter: (filter: string) => void;
+  itemFilter: string[];
   showFilter: boolean;
 }
 
-const Filter = ({ handlesetFilter, itemFilter, showFilter }: props) => {
-  const addFilter = (event: MouseEvent) => {
-    const n = (event.target as HTMLElement).textContent;
-    handlesetFilter(`${n}`);
+const Filter = ({ handleFilter, itemFilter, showFilter }: props) => {
+  const addFilter = (item: string) => {
+    handleFilter(item);
   };
   // console.log(showFilter);
-
   return (
-    <div className={`container__filter ${showFilter ? "hidden" : ""}`}>
+    <div className={`container__filter ${showFilter ? "" : "hidden"}`}>
       <div className="col__filter" >
         <p className="title__filter">Status</p>
         {
-          arrayProgress.map((item, index) => {
+          arrayProgress.map((item:string) => {
             return (
-              <div className="item__filter" key={index} >
-                <p onClick={(e) => addFilter(e)}>{item}</p>
+              <div onClick={() => addFilter(item)}className="item__filter" key={item} >
+                <p >{item}</p>
                 {itemFilter.includes(item) ? <span className="filter__close">x</span> : null}
               </div>
             );
@@ -36,15 +34,14 @@ const Filter = ({ handlesetFilter, itemFilter, showFilter }: props) => {
       </div>
       <div className="col__filter">
          <p className="title__filter">Priority</p>
-         {
-          arrayPriority.map((item, index) => {
-            return (
-              <div className="item__filter" key={index} >
-                <p onClick={(e) => addFilter(e)}>{item}</p>
+         {arrayPriority.map((item:string) => {
+           return (
+              <div onClick={(e) => addFilter(item)}className="item__filter" key={item} >
+                <p >{item}</p>
                 {itemFilter.includes(item) ? <span className="filter__close">x</span> : null}
               </div>
-            );
-          })
+           );
+         })
         }
       </div>
     </div>
