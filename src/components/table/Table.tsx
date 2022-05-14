@@ -19,8 +19,7 @@ interface props {
 const Table = ({ search } : props) => {
   // state tasks from context
 
-  const { state, removeTasks } = useContext(TaskContext);
-  const [isCheck, setIsCheck] = useState<Task[]>([]);
+  const { state } = useContext(TaskContext);
   const [showModal, setShowModal] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
   const [isTasks, setIsTasks] = useState<Task[]>(state.tasks);
@@ -31,14 +30,6 @@ const Table = ({ search } : props) => {
   const { saveItem } = useLocalStorage({ tasks: state.tasks });
   console.log(state.tasks);
 
-  useEffect(() => {
-    if (itemFilter.length > 0) {
-      setIsTasks(newTasks);
-    }
-    if (itemFilter.length === 0) {
-      setIsTasks(state.tasks);
-    }
-  }, [itemFilter, newTasks]);
   // useEffect to filter tasks the search
   useEffect(() => {
     if (search.length > 0) {
