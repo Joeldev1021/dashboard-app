@@ -11,6 +11,7 @@ interface Props {
 
 const Modal = ({ setShowModal, tasks }: Props) => {
   const { removeTasks } = useContext(TaskContext);
+
   const handleRemove = () => {
     removeTasks();
     setShowModal(false);
