@@ -1,14 +1,13 @@
 /* eslint-disable no-unused-vars */
 import { useContext, useEffect, useState } from "react";
 import { TaskContext } from "../../context/TaskContext";
-import { useFilterItem } from "../../hooks/useFilterItem";
 import { Task } from "../../interface/TaskInterface";
 import Filter from "../filter/Filter";
-import Modal from "../modal/Modal";
 import ListItem from "../ListItem/ListItem";
 import "./table.scss";
 import TableHead from "../tableHead/TableHead";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
+import Modal from "../Modal/Modal";
 
 interface props {
   search: string;
@@ -42,7 +41,6 @@ const Table = ({ search } : props) => {
         <Modal
           setShowModal={setShowModal}
           tasks={tasks}
-
         />
       )}
       <div className="container">
