@@ -22,7 +22,7 @@ const Modal = ({ setShowModal, tasks }: Props) => {
                 <p className="modal__title">Are you sure you want to delete this tasks?</p>
                 <p className="modal__subtitle">you are about to eliminate these tasks</p>
                 <ol className="list__modal">
-                    {tasks.map((task: Task) => <li key={task.id}>{task.title}</li>)}
+                    {tasks.map((task: Task) => task.select && <li key={task.id}>{task.title}</li>)}
                 </ol>
             <div className="btn__group">
                 <button className="btn btn__cancel" onClick={() => setShowModal(false)}>Cancel</button>
