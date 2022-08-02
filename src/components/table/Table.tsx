@@ -4,9 +4,9 @@ import { Task } from '../../interface/TaskInterface';
 import Filter from '../Filter/Filter';
 import ListItem from '../ListItem/ListItem';
 import './table.scss';
-import TableHead from '../TableHead/TableHead';
 import Modal from '../Modal/Modal';
 import Thead from '../Thead/Thead';
+import TableHead from '../TableHead/TableHead';
 
 interface props {
 	search: string;
