@@ -8,6 +8,7 @@ import "./table.scss";
 import TableHead from "../tableHead/TableHead";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import Modal from "../Modal/Modal";
+import Thead from "../Thead/Thead";
 
 interface props {
   search: string;
@@ -29,6 +30,15 @@ const Table = ({ search } : props) => {
       setTasks(state.tasks);
     }
   }, [state.tasks, itemFilter]);
+
+  // filter search by name
+  useEffect(() => {
+    if (search.length > 0) {
+      setTasks(state.tasks.filter((task: Task) => task.title.toLowerCase().includes(search.toLowerCase())));
+    } else if (search.length === 0) {
+      setTasks(state.tasks);
+    }
+  }, [search]);
 
   const handleFilter = (filter: string) => {
     if (itemFilter.includes(filter)) return setItemFilter(itemFilter.filter((item) => item !== filter));
@@ -55,18 +65,8 @@ const Table = ({ search } : props) => {
       </div>
       <Filter showFilter={showFilter} handleFilter={handleFilter} itemFilter={itemFilter}/>
       <table className="table">
-        <thead>
-          <tr>
-            <th>action</th>
-            <th>Task</th>
-            <th>user</th>
-            <th style={{ textAlign: "center" }}>Status</th>
-            <th style={{ textAlign: "center" }}>Priority</th>
-            <th style={{ textAlign: "center" }}>Progress</th>
-            <th>End date</th>
-          </tr>
-        </thead>
-        <tbody className="tbody">
+        <Thead />
+       <tbody className="tbody">
           {tasks.length > 0 &&
             tasks.map((task:Task) => (
               <ListItem

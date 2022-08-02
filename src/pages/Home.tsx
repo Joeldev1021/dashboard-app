@@ -7,8 +7,6 @@ import { TaskContext } from "../context/TaskContext";
 const Home = () => {
   const [search, setSearch] = useState("");
 
-  const { filterTask } = useContext(TaskContext);
-
   const handleSearch = (n: string) => {
     setSearch(n);
   };
@@ -16,7 +14,7 @@ const Home = () => {
   return (
     <div>
       <Header handleSearch={handleSearch}/>
-      <Table search={search}/>
+      <Table search={search} />
     </div>
   );
 };
