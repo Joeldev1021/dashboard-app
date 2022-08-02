@@ -1,21 +1,21 @@
-import "./App.scss";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import AddTask from "./pages/AddTask";
-import Home from "./pages/Home";
-import Banner from "./components/banner/Banner";
+import './App.scss';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import AddTask from './pages/AddTask';
+import Home from './pages/Home';
+import Banner from './components/Banner/Banner';
 
-function App () {
-  return (
-    <div className="App">
-      <BrowserRouter>
-      <Banner />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/add" element={<AddTask />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
-  );
+function App() {
+	return (
+		<div className='App'>
+			<BrowserRouter>
+				<Banner />
+				<Routes>
+					<Route path='/' element={<Home />} />
+					<Route path='/add' element={<AddTask />} />
+				</Routes>
+			</BrowserRouter>
+		</div>
+	);
 }
 
 export default App;
