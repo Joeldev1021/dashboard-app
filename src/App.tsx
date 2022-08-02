@@ -4,11 +4,11 @@ import AddTask from "./pages/AddTask";
 import Home from "./pages/Home";
 import Banner from "./components/banner/Banner";
 
-function App () {
+function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <Banner />
+        <Banner />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/add" element={<AddTask />} />
