@@ -1,0 +1,104 @@
+.table {
+	margin: auto;
+	width: 70%;
+	border-collapse: collapse;
+	font-size: 1.5rem;
+	text-align: left;
+	tr:hover {
+		background-color: rgb(228, 228, 228);
+	}
+	@media screen and (max-width: 768px) {
+		width: 90%;
+	}
+}
+.table__head {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	align-items: center;
+	grid-gap: 1rem;
+	width: 25rem;
+
+	.btn__filter {
+		background: none;
+		border: none;
+		cursor: pointer;
+	}
+	.btn__delete {
+		background: white;
+		color: black;
+		padding: 1.3rem 0.1rem;
+		width: 8rem;
+	}
+	.btn_add {
+		grid-column: 3;
+		width: 5rem;
+	}
+}
+
+.table td,
+.table th {
+	padding: 8px;
+}
+
+.container {
+	display: flex;
+	width: 70%;
+	margin: auto;
+	justify-content: space-between;
+}
+
+.btn_status {
+	outline: none;
+	margin: auto;
+	text-transform: capitalize;
+}
+
+.btn {
+	text-decoration: none;
+	display: flex;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	background: var(--black);
+	color: var(--white);
+	margin: auto;
+	height: 2rem;
+	padding: 0.5rem 1rem;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+//priorities
+
+.high {
+	color: var(--red);
+}
+
+.medium {
+	color: var(--orange);
+}
+
+.low {
+	color: var(--blue);
+}
+
+.additional {
+	color: var(--green);
+}
+//status
+
+.started {
+	background: var(--red2);
+}
+.progress {
+	background: var(--blue);
+}
+.review {
+	background: var(--yellow);
+}
+.completed {
+	background: var(--green);
+}
+.cancelled {
+	background: var(--red);
+}

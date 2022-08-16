@@ -1,4 +1,4 @@
-import './filter.scss';
+import './styles.scss';
 
 const arrayProgress = [
 	'not started',
@@ -19,7 +19,7 @@ const Filter = ({ handleFilter, itemFilter, showFilter }: props) => {
 	const addFilter = (item: string) => {
 		handleFilter(item);
 	};
-	// console.log(showFilter);
+
 	return (
 		<div className={`container__filter ${showFilter ? '' : 'hidden'}`}>
 			<div className='col__filter'>

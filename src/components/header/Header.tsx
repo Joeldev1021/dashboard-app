@@ -1,4 +1,4 @@
-import './header.scss';
+import './styles.scss';
 import Search from '../Search/Search';
 
 interface props {

@@ -1,17 +1,16 @@
 // eslint-disable-next-line no-unused-vars
 import { ChangeEvent, useContext } from 'react';
-import './listItem.scss';
+import './styles.scss';
 
 import { TaskContext } from '../../context/TaskContext';
 import { Task } from '../../interface/TaskInterface';
 import Progress from '../Progress/Progress';
 
 interface props {
-	item: Task;
-	handleIsCheck: (task: Task) => void;
+	task: Task;
 }
 
-const ListItem = ({ item, handleIsCheck }: props) => {
+const ListItem = ({ task }: props) => {
 	const { addSelectTask } = useContext(TaskContext);
 
 	const handleCheck = (e: ChangeEvent) => {
@@ -25,26 +24,25 @@ const ListItem = ({ item, handleIsCheck }: props) => {
 				<input
 					type='checkbox'
 					name='select'
-					data-id={item.id}
+					data-id={task.id}
 					onChange={e => handleCheck(e)}
-					onClick={e => handleIsCheck(item)}
-					checked={item.select}
+					checked={task.select}
 				/>
 			</th>
-			<td>{item.title}</td>
-			<td>{item.user}</td>
+			<td>{task.title}</td>
+			<td>{task.user}</td>
 			<td style={{ textAlign: 'center' }}>
-				<button className={`btn btn_status ${item.status}`}>
-					{item.status}
+				<button className={`btn btn_status ${task.status}`}>
+					{task.status}
 				</button>
 			</td>
 			<td style={{ textAlign: 'center' }}>
-				<i className={`fas fa-flag ${item.priority}`}></i>
+				<i className={`fas fa-flag ${task.priority}`}></i>
 			</td>
 			<td>
-				<Progress task={item} />
+				<Progress task={task} />
 			</td>
-			<td>{item.endDate}</td>
+			<td>{task.endDate}</td>
 		</tr>
 	);
 };

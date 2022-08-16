@@ -7,7 +7,7 @@ interface Props {
   task: Task;
 }
 
-const Progress = ({ task }:Props) => {
+const Progress = ({ task }: Props) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const spanProcent = useRef<HTMLSpanElement>(null);
   useEffect(() => {

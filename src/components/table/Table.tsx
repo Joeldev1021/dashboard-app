@@ -1,9 +1,9 @@
+import './styles.scss';
 import { useContext, useEffect, useState } from 'react';
 import { TaskContext } from '../../context/TaskContext';
 import { Task } from '../../interface/TaskInterface';
 import Filter from '../Filter/Filter';
 import ListItem from '../ListItem/ListItem';
-import './table.scss';
 import Modal from '../Modal/Modal';
 import Thead from '../Thead/Thead';
 import TableHead from '../TableHead/TableHead';
@@ -19,6 +19,7 @@ const Table = ({ search }: props) => {
 	const [tasks, setTasks] = useState<Task[]>([]);
 	const [itemFilter, setItemFilter] = useState<string[]>([]);
 
+	/* Filtering the tasks based on the itemFilter array. */
 	useEffect(() => {
 		if (itemFilter.length > 0) {
 			setTasks(
@@ -33,7 +34,9 @@ const Table = ({ search }: props) => {
 		}
 	}, [state.tasks, itemFilter]);
 
-	// filter search by name
+	/***
+	 * filter task by @{search}
+	 * */
 	useEffect(() => {
 		if (search.length > 0) {
 			setTasks(
@@ -46,6 +49,11 @@ const Table = ({ search }: props) => {
 		}
 	}, [search]);
 
+	/**
+	 * If the filter is already in the array, remove it, otherwise add it.
+	 * @param {string} filter - string - this is the filter that is being passed in from the button click
+	 * @returns The return value is the value of the last expression evaluated in the function.
+	 */
 	const handleFilter = (filter: string) => {
 		if (itemFilter.includes(filter))
 			return setItemFilter(itemFilter.filter(item => item !== filter));

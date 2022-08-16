@@ -1,97 +1,92 @@
-
 .container_form {
-    width: 80%;
-    margin: auto
-
+	width: 80%;
+	margin: auto;
 }
 
 form {
-    width: 100%;
-    margin: auto;
+	width: 100%;
+	margin: auto;
 }
 
 .form__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    justify-content: center;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	align-items: center;
+	justify-content: center;
 }
 
 .form-group {
-    margin:auto;
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    font-family: 'Open Sans', sans-serif;
-    label {
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin-bottom: 0.5rem;
-        
-    }	
-    input {
-        width: 30rem;
-        background: white;
-        padding: 0.7rem;
-        border: 2px solid #ccc;
-        border-radius: 5px;
-        margin-bottom: 0.5rem;
-        outline: none;
-        opacity: 1;
-        transition: all 0.3s ease-in-out;
-        &:focus {
-            border: 2px solid rgb(99, 197, 140);
-            box-shadow: 0 0 5px #ccc;
-        }
-    }
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+	font-family: 'Open Sans', sans-serif;
+	label {
+		font-size: 1.5rem;
+		font-weight: bold;
+		margin-bottom: 0.5rem;
+	}
+	input {
+		width: 30rem;
+		background: white;
+		padding: 0.7rem;
+		border: 2px solid #ccc;
+		border-radius: 5px;
+		margin-bottom: 0.5rem;
+		outline: none;
+		opacity: 1;
+		transition: all 0.3s ease-in-out;
+		&:focus {
+			border: 2px solid rgb(99, 197, 140);
+			box-shadow: 0 0 5px #ccc;
+		}
+	}
 
-    select {
-        width: 31rem;
-        padding: 0.7rem;
-        border: 2px solid #ccc;
-        border-radius: 5px;
-        margin-bottom: 0.5rem;
-        font-family: 'Open Sans', sans-serif;
-    }	
-    textarea {
-        width: 30rem;
-        height: 10rem;
-        padding: 0.5rem;
-        border: 2px solid #ccc;
-        border-radius: 5px;
-        margin-bottom: 0.5rem;
-        font-family: 'Open Sans', sans-serif;
-        resize: none;
-        outline: none;
-        opacity: 1;
-        transition: all 0.3s ease-in-out;
-        &:focus {
-            border: 2px solid rgb(99, 197, 140);
-            
-        }
-    }
-    .form-button {
-        display: flex;
+	select {
+		width: 31rem;
+		padding: 0.7rem;
+		border: 2px solid #ccc;
+		border-radius: 5px;
+		margin-bottom: 0.5rem;
+		font-family: 'Open Sans', sans-serif;
+	}
+	textarea {
+		width: 30rem;
+		height: 10rem;
+		padding: 0.5rem;
+		border: 2px solid #ccc;
+		border-radius: 5px;
+		margin-bottom: 0.5rem;
+		font-family: 'Open Sans', sans-serif;
+		resize: none;
+		outline: none;
+		opacity: 1;
+		transition: all 0.3s ease-in-out;
+		&:focus {
+			border: 2px solid rgb(99, 197, 140);
+		}
+	}
+	.form-button {
+		display: flex;
 
-        .btn {
-            padding: 1.5rem;
-            outline: none;
-            border: 2px solid #ccc;
-            transition: all 0.2s ease-in-out;
-            &:hover {
-                transform: scale(1.05);
-            }
-        }
-        
-       :nth-child(1){
-         background: white;
-         color: black;
-        
-        }
-        :nth-child(2){
-            background: rgb(47, 167, 97);
-            color: white;
-            margin-left: 1rem;
-        }
-    }
+		.btn {
+			padding: 1.5rem;
+			outline: none;
+			border: 2px solid #ccc;
+			transition: all 0.2s ease-in-out;
+			&:hover {
+				transform: scale(1.05);
+			}
+		}
+
+		:nth-child(1) {
+			background: white;
+			color: black;
+		}
+		:nth-child(2) {
+			background: rgb(47, 167, 97);
+			color: white;
+			margin-left: 1rem;
+		}
+	}
 }

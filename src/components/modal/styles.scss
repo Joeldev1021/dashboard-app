@@ -1,0 +1,47 @@
+.modal {
+    position: fixed;
+    background: #F5F5F5;
+    border:solid 1px #ccc;
+    z-index: 100;
+    top: 10rem;
+    left: 0;
+    padding: 1rem;
+    width: 40rem;
+    min-height: 20rem;
+    margin: auto;
+    right: 0;
+    border-radius: 1rem;
+    .modal__title {
+       font-size: 1.7rem;
+       font-weight: bold;
+    }
+    .modal__subtitle {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .btn__group {
+        padding: 2rem;
+        display: flex;
+        width:20rem ;
+        margin: auto;
+        .btn {
+            background: white;
+            color: black;
+            padding: 1.3rem 0.1rem;
+            width: 8rem;
+            border: solid 1px rgb(153, 153, 153);
+        }
+        .btn__delete{
+            background: black;
+            color: white;
+            width: 8rem;
+            border: black;
+        }
+    }
+    .list__modal {
+        text-align: left;
+        font-size: 1.5rem;
+    }
+}
+
